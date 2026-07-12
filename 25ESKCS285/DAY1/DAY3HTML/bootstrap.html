@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scrum Digital Bootcamp Landing Page - Debug Challenge</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  body{
+    font-family: 'Poppins', sans-serif;
+}
+  <style>
+    .navbar {
+    padding: 15px 0;
+}
+
+.nav-link {
+    margin-left: 20px;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #0dfde1 !important;
+    }
+
+    .hero-row{
+    min-height: 80vh;
+    align-items: center;
+}
+
+.hero-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.hero-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-img{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.hero-content h1{
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.hero-content p{
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+.feature-img{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.feature-card{
+    overflow: hidden;
+}
+
+.feature-card{
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.feature-img{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.feature-card{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 15px;
+}
+
+.feature-img{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+}
+
+.row{
+    align-items: stretch;
+}
+  </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container">
+      <a class="navbar-brand" href="#">Scrum Digital</a>
+
+      <button class="navbar-toggler"type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="'#navbarnav">
+    <span class="navbar-toggler-icon"></span>
+  
+  </button>
+
+  <div class="collapse navbar-collapse"id="navbarnav">
+    <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Program</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Trainers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  </div>
+
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row hero-row">
+        <div class="col-lg-6 col-6 hero-content">
+          <span class="badge bg-primary mb-3">13-Day Intensive Bootcamp</span>
+          <h1>Full Stack Web Development & AI Integration</h1>
+          <p>
+            Build real-world projects using HTML, CSS, Bootstrap, JavaScript,
+            PHP, MySQL and AI APIs with industry mentors.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-success">Join Today</a>
+            <a href="#program" class="btn btn-outline-dark">View Program</a>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-6">
+          <img class="hero-img" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&auto=format&fit=crop&q=80" alt="Students coding in classroom">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="container feature-section">
+    <h2 class="section-title">What You Will Build</h2>
+
+    <div class="row g-4">
+      <div class="col-md-4 d-flex">
+        <div class="feature-card w-100">
+          <img class="features-img"src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=80" alt="Laptop with code">
+          <h3>Responsive UI</h3>
+          <p>Create modern pages using HTML, CSS, Flexbox and Bootstrap components.</p>
+        </div>
+      </div>
+
+      
+      <div class="col-md-4 d-flex">
+        <div class="feature-card w-100">
+          <img class="features-img" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80" alt="Code editor">
+          <h3>Backend Logic</h3>
+          <p>Connect frontend pages with PHP, MySQL and REST-style workflows.</p>
+        </div>
+      </div>
+
+      
+      <div class="col-md-4 d-flex">
+        <div class="feature-card w-100">
+          <img class="features-img" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&auto=format&fit=crop&q=80" alt="AI technology">
+          <h3>AI Features</h3>
+          <p>Add useful AI API features into your final project dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAINERS -->
+  <section id="trainers" class="trainer-section">
+    <div class="container">
+      <h2 class="section-title">Meet Your Trainers</h2>
+
+      <div class="trainer-grid">
+        <div class="trainer-card">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&auto=format&fit=crop&q=80" alt="Trainer profile">
+          <h4>Lead Technical Trainer</h4>
+          <p>Guides live coding, debugging and architecture discussions.</p>
+        </div>
+
+        <div class="trainer-card">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80" alt="Trainer profile">
+          <h4>Product & Delivery Mentor</h4>
+          <p>Helps students connect technical skills with real product thinking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container contact-section">
+    <div class="contact-box">
+      <div class="text-center mb-4">
+      
+        <h2>Ready to Build?</h2>
+        <p>Register your interest and start your journey toward becoming job-ready.</p>
+      </div>
+
+      <form>
+        <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Your Name">
+        </div>
+        <div class="mb-3">
+        <input type="email" class="form-control" placeholder="Email Address">
+        </div>
+        <button class="btn btn-primary w-100">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Scrum Digital Bootcamp. Learn. Build. Debug. Repeat.</p>
+  </footer>
+
+</body>
+</html>
