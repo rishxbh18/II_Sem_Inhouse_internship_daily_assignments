@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>information</h1>
+    
+</body>
+<script>
+   // ==========================================
+// 1. YOUR MISSION: Build Your JSON Profile
+// ==========================================
+
+// Ek JavaScript object banaya aapki details ke sath
+const myProfile = {
+  name: "Your Name",           // Apna naam likhein
+  branch: "Computer Science",        // Apni engineering branch likhein
+  cgpa: 8.5,                         // Apna current GPA likhein
+  skills: ["JavaScript", "HTML", "CSS"], // Koi bhi 3 skills
+  city: "Jaipur"                     // Apna hometown likhein
+};
+
+// Stringify: Object ko JSON string mein convert kiya
+const stringifiedProfile = JSON.stringify(myProfile);
+console.log("Stringified Profile:", stringifiedProfile);
+
+// Parse: JSON string ko wapas JavaScript object banaya (Round-trip)
+const parsedProfile = JSON.parse(stringifiedProfile);
+console.log("Parsed Profile (Round-trip confirmed):", parsedProfile);
+
+
+// ==========================================
+// 2. CHALLENGE: Array with 3 Classmates
+// ==========================================
+
+const classmatesArray = [
+  {
+    name: "Rahul Sharma",
+    branch: "Computer Science",
+    cgpa: 8.2,
+    skills: ["Python", "SQL", "Git"],
+    city: "Delhi"
+  },
+  {
+    name: "Priya Singh",
+    branch: "Information Technology",
+    cgpa: 8.9,
+    skills: ["Java", "C++", "Data Structures"],
+    city: "Mumbai"
+  },
+  {
+    name: "Amit Patel",
+    branch: "Computer Science",
+    cgpa: 7.8,
+    skills: ["React", "Node.js", "MongoDB"],
+    city: "Ahmedabad"
+  }
+];
+
+
+// ==========================================
+// 3. BONUS: Pretty-print with Indentation
+// ==========================================
+
+// Teesri argument (2) dene se output formatted (indented) dikhega
+const prettyJSON = JSON.stringify(classmatesArray, null, 2);
+
+// Is output ko aap copy karke chat mein paste kar sakte hain
+console.log(prettyJSON);
+
+
+
+</script>
+</html>
