@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration System</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>Student Registration Form</h3>
+                </div>
+                <div class="card-body">
+                    
+                    <!-- Styled Error Box for Validation -->
+                    <div id="errorBox" class="alert alert-danger d-none" role="alert">
+                        <ul id="errorList" class="mb-0"></ul>
+                    </div>
+
+                    <form id="regForm" action="submit.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm(event)">
+                        
+                        <!-- Name Field -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+
+                       
+
+                        <!-- Gender (Radio Buttons) -->
+                        <div class="mb-3">
+                            <label class="form-label d-block">Gender</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
+                                <label class="form-check-label" for="male">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                                <label class="form-check-label" for="female">Female</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="other" value="Other">
+                                <label class="form-check-label" for="other">Other</label>
+                            </div>
+                        </div>
+
+                        <!-- Course (Dropdown) -->
+                        <div class="mb-3">
+                            <label for="course" class="form-label">Course</label>
+                            <select class="form-select" id="course" name="course">
+                                <option value="">Select a course</option>
+                                <option value="B.Tech">B.Tech</option>
+                                <option value="B.Sc">B.Sc</option>
+                                <option value="BA">BA</option>
+                                <option value="MCA">MCA</option>
+                            </select>
+                        </div>
+
+                        <!-- Address (Textarea) -->
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for Better Validation -->
+<script>
+function validateForm(event) {
+    const name = document.getElementById('name').value.trim();
+    const gender = document.querySelector('input[name="gender"]:checked');
+    const address = document.getElementById('address').value.trim();
+    
+    const errorBox = document.getElementById('errorBox');
+    const errorList = document.getElementById('errorList');
+    
+    let errors = [];
+    errorList.innerHTML = ""; 
+
+    // 1. Name Validation (No numbers allowed)
+    const nameRegex = /^[a-zA-Z\s]+$/;
+    if (name === "") {
+        errors.push("Name field is required.");
+    } else if (!nameRegex.test(name)) {
+        errors.push("Name must contain letters only (no numbers or special characters).");
+    }
+
+    // 2. Gender Validation (Required selection)
+    if (!gender) {
+        errors.push("Please select your gender.");
+    }
+
+    // 3. Address Validation (Minimum length requirement)
+    if (address === "") {
+        errors.push("Address field is required.");
+    } else if (address.length < 10) {
+        errors.push("Address must be at least 10 characters long.");
+    }
+
+    // Display errors if any exist
+    if (errors.length > 0) {
+        event.preventDefault(); // Stop form submission
+        errorBox.classList.remove('d-none');
+        errors.forEach(function(error) {
+            let li = document.createElement('li');
+            li.textContent = error;
+            errorList.appendChild(li);
+        });
+        window.scrollTo(0, 0); // Scroll to top to see error box
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+</body>
+</html>
