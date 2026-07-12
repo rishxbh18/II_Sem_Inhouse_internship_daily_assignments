@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeForge Academy — Build Real Projects, Earn Real Skills</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0a0e16;
+    --bg-soft: #10151f;
+    --panel: #141a26;
+    --line: rgba(148,163,184,.12);
+    --teal: #2dd4bf;
+    --indigo: #6366f1;
+    --amber: #fbbf24;
+    --text: #e7ecf3;
+    --muted: #8b95a7;
+    --font-display: 'Sora', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .brand { font-family: var(--font-display); }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+
+  /* ---------- NAVBAR ---------- */
+  .navbar {
+    background: rgba(10,14,22,.75);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    transition: background .3s ease, box-shadow .3s ease;
+  }
+  .navbar.scrolled {
+    background: rgba(10,14,22,.95);
+    box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  }
+  .navbar-brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text)!important;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .navbar-brand .bracket { color: var(--teal); font-family: var(--font-mono); }
+  
+  .nav-link {
+    color: var(--muted)!important;
+    font-weight: 500;
+    font-size: .92rem;
+    position: relative;
+    margin: 0 .35rem;
+    transition: color .2s ease;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute; left: 0; bottom: 2px;
+    width: 0; height: 2px;
+    background: var(--teal);
+    transition: width .25s ease;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--text)!important; }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+  
+  .btn-cta {
+    background: var(--teal);
+    color: #06141a;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: .55rem 1.3rem;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(45,212,191,.35);
+    background: #3ee0cb;
+    color: #06141a;
+  }
+
+  /* ---------- HERO (Flexbox) ---------- */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    background:
+      radial-gradient(ellipse 60% 50% at 18% 20%, rgba(99,102,241,.30), transparent 60%),
+      radial-gradient(ellipse 55% 45% at 85% 75%, rgba(45,212,191,.22), transparent 60%),
+      linear-gradient(180deg, #090c13 0%, #0a0e16 60%, #0c1119 100%);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(148,163,184,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148,163,184,.05) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, black, transparent 75%);
+    pointer-events: none;
+  }
+  .hero-headline {
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -.02em;
+  }
+  .hero-headline .accent {
+    background: linear-gradient(90deg, var(--teal), var(--indigo));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-sub {
+    color: var(--muted);
+    font-size: 1.08rem;
+    max-width: 520px;
+  }
+  .terminal {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,.6);
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: .85rem;
+  }
+  .terminal-bar {
+    display: flex; gap: 6px;
+    padding: .7rem .9rem;
+    background: #10151f;
+    border-bottom: 1px solid var(--line);
+  }
+  .terminal-bar span { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .terminal-body { padding: 1.1rem 1.2rem; color: #a8b3c5; line-height: 1.85; }
+  .terminal-body .k { color: #c792ea; }
+  .terminal-body .s { color: var(--teal); }
+  .terminal-body .c { color: #5c6577; }
+  .cursor {
+    display: inline-block; width: 7px; height: 1.05em;
+    background: var(--teal); vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---------- SECTION HEADER ---------- */
+  .section { padding: 6rem 0; scroll-margin-top: 70px; }
+  .section-soft { background: var(--bg-soft); }
+  .section-head { max-width: 640px; }
+  .section-head h2 { font-size: clamp(1.7rem,3vw,2.3rem); font-weight: 700; margin-top: .5rem; }
+  .section-head p { color: var(--muted); }
+
+  /* ---------- FEATURE CARDS ---------- */
+  .feature-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 2rem 1.6rem;
+    height: 100%;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .feature-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(45,212,191,.4);
+    box-shadow: 0 20px 40px -18px rgba(45,212,191,.25);
+  }
+  .feature-icon {
+    width: 48px; height: 48px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 10px;
+    background: rgba(45,212,191,.12);
+    color: var(--teal);
+    font-size: 1.3rem;
+    margin-bottom: 1.1rem;
+  }
+  .feature-card h3 { font-size: 1.08rem; font-weight: 600; }
+  .feature-card p { color: var(--muted); font-size: .92rem; margin-bottom: 0; }
+
+  /* ---------- COMMUNITY POST CARDS (Flexbox) ---------- */
+  .post-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .post-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px -18px rgba(45,212,191,.3);
+  }
+  .post-img-wrapper {
+    height: 200px;
+    overflow: hidden;
+    background: #070a10;
+  }
+  .post-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .3s ease;
+  }
+  .post-card:hover .post-img { transform: scale(1.05); }
+  .post-body {
+    padding: 1.3rem 1.4rem;
+    flex-grow: 1;
+  }
+  .post-tag {
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    color: var(--teal);
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+  .post-title { font-size: 1.2rem; font-weight: 700; margin: .3rem 0 .6rem; }
+  .post-body p { color: var(--muted); font-size: .88rem; margin-bottom: 0; line-height: 1.5; }
+
+  /* ---------- TEAM ---------- */
+  .trainer-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    height: 100%;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .trainer-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -18px rgba(99,102,241,.3); }
+  .trainer-photo {
+    height: 190px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2.6rem;
+    color: #0a0e16;
+  }
+  .trainer-body { padding: 1.3rem 1.4rem 1.5rem; }
+  .trainer-body h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .1rem; }
+  .trainer-role { font-family: var(--font-mono); font-size: .78rem; color: var(--teal); letter-spacing: .04em; }
+  .trainer-body p { color: var(--muted); font-size: .88rem; margin: .6rem 0 0; }
+  .social-row a { color: var(--muted); margin-right: .8rem; transition: color .2s ease; }
+  .social-row a:hover { color: var(--teal); }
+
+  /* ---------- CONTACT ---------- */
+  .contact-panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: clamp(1.8rem, 4vw, 3rem);
+  }
+  .form-control {
+    background: #0d1320;
+    border: 1px solid var(--line);
+    color: var(--text);
+    border-radius: 8px;
+    padding: .7rem .9rem;
+  }
+  .form-control:focus {
+    background: #0d1320;
+    color: var(--text);
+    border-color: var(--teal);
+    box-shadow: 0 0 0 .2rem rgba(45,212,191,.18);
+  }
+  .form-control::placeholder { color: #5c6577; }
+  
+  .contact-info-row { display: flex; align-items: flex-start; gap: .9rem; margin-bottom: 1.4rem; }
+  .contact-info-row i {
+    width: 38px; height: 38px;
+    border-radius: 9px;
+    background: rgba(45,212,191,.12);
+    color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-info-row h4 { font-size: .95rem; font-weight: 600; margin-bottom: .15rem; }
+  .contact-info-row p { color: var(--muted); font-size: .88rem; margin: 0; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: #070a10;
+    border-top: 1px solid var(--line);
+    padding: 2.2rem 0;
+  }
+  footer p { color: var(--muted); font-size: .85rem; margin: 0; }
+  footer .social-row a { font-size: 1.05rem; }
+
+  @media (max-width: 767.98px) {
+    .section { padding: 4rem 0; }
+    .hero { min-height: auto; padding: 7.5rem 0 3.5rem; }
+  }
+</style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true">
+
+<nav class="navbar navbar-expand-lg fixed-top py-3" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="#top"><span class="bracket">&lt;/&gt;</span>CodeForge</a>
+    <button class="navbar-toggler border-0 text-white shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+      <i class="bi bi-list text-white fs-2"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navContent">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#features">Curriculum</a></li>
+        <li class="nav-item"><a class="nav-link" href="#posts">Highlights</a></li>
+        <li class="nav-item"><a class="nav-link" href="#team">Trainers</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a class="btn btn-cta w-100" href="#contact">Enroll Now</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="container position-relative">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <p class="eyebrow mb-3">// 6-week intensive cohort</p>
+        <h1 class="hero-headline mb-4">Stop tutorial‑hopping.<br>Start <span class="accent">shipping code.</span></h1>
+        <p class="hero-sub mb-4">Join expert-led bootcamps and build real-world projects that get you hired — with hands-on guidance from trainers who write production code every day.</p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#contact" class="btn btn-cta px-4 py-2">Explore Courses</a>
+          <a href="#features" class="btn btn-outline-light px-4 py-2" style="border-color:var(--line); border-radius:8px;">See Curriculum</a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="terminal shadow-lg">
+          <div class="terminal-bar">
+            <span style="background:#ff5f56;"></span><span style="background:#ffbd2e;"></span><span style="background:#27c93f;"></span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="c">// your-first-week.js</span></div>
+            <div><span class="k">const</span> skills = [<span class="s">'HTML'</span>, <span class="s">'CSS'</span>, <span class="s">'Bootstrap'</span>];</div>
+            <div><span class="k">function</span> buildProject() {</div>
+            <div>&nbsp;&nbsp;<span class="k">return</span> <span class="s">'shipped 🚀'</span>;</div>
+            <div>}</div>
+            <div class="mt-2"><span class="c">$</span> buildProject()<span class="cursor"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head mb-5">
+      <p class="eyebrow">What you'll build</p>
+      <h2>A curriculum shaped around shipping, not slides</h2>
+      <p>Every module ends with a real artifact for your portfolio — not a quiz.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="bi bi-layout-text-window-reverse"></i></div>
+          <h3>Responsive Layouts</h3>
+          <p>Master Flexbox and the Bootstrap grid to build pages that adapt to any screen, from phone to widescreen.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <div class="feature-icon" style="background:rgba(99,102,241,.14); color:#a5a8ff;"><i class="bi bi-palette2"></i></div>
+          <h3>Design Systems</h3>
+          <p>Learn to build reusable components — buttons, cards, navbars — with a consistent visual language.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <div class="feature-icon" style="background:rgba(251,191,36,.13); color:var(--amber);"><i class="bi bi-lightning-charge"></i></div>
+          <h3>Interactive UI</h3>
+          <p>Add motion and micro-interactions with CSS transitions that make interfaces feel alive, not static.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-soft" id="posts">
+  <div class="container">
+    <div class="section-head mb-5">
+      <p class="eyebrow">Trending Highlights</p>
+      <h2>Community Board & Project Updates</h2>
+      <p>Catch up with the latest architectural logs and viral engineering updates from our forums.</p>
+    </div>
+    <div class="row g-4">
+      
+      <div class="col-sm-6 col-lg-3">
+        <div class="post-card">
+          <div class="post-img-wrapper">
+            <img src="1000058685.jpg" alt="ceo" class="post-img">
+          </div>
+          <div class="post-body">
+            <span class="post-tag">// Infrastructure</span>
+            <h3 class="post-title">ceo</h3>
+            <p>Taking complete authority over full-stack deployments and driving operational scale like a true lead architect.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="post-card">
+          <div class="post-img-wrapper">
+            <img src="1000058690.jpg" alt="khela hobe" class="post-img">
+          </div>
+          <div class="post-body">
+            <span class="post-tag">// Production Phase</span>
+            <h3 class="post-title">khela hobe</h3>
+            <p>The game is officially on. When severe production bugs show up right before major product releases.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="post-card">
+          <div class="post-img-wrapper">
+            <img src="1000058687.jpg" alt="chaihsamosa" class="post-img">
+          </div>
+          <div class="post-body">
+            <span class="post-tag">// Developer Fuel</span>
+            <h3 class="post-title">chaihsamosa</h3>
+            <p>The essential developer refueling ritual required before embarking on intense midnight debugging marathons.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="post-card">
+          <div class="post-img-wrapper">
+            <img src="1000058686.webp" alt="aalu se sona" class="post-img">
+          </div>
+          <div class="post-body">
+            <span class="post-tag">// Logic Paradigm</span>
+            <h3 class="post-title">aalu se sona</h3>
+            <p>Building highly optimized function pipelines that process raw input and transform it seamlessly into computational gold.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="team">
+  <div class="container">
+    <div class="section-head mb-5">
+      <p class="eyebrow">Your trainers</p>
+      <h2>Meet the team behind the curriculum</h2>
+      <p>Working engineers and designers who teach what they ship in their day jobs.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3">
+        <div class="trainer-card">
+          <div class="trainer-photo" style="background:linear-gradient(135deg, var(--teal), #1a8f82);">AK</div>
+          <div class="trainer-body">
+            <h3>Amara Khan</h3>
+            <p class="trainer-role">LEAD FRONTEND TRAINER</p>
+            <p>8 years building design systems at scale, now obsessed with teaching clean CSS.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="trainer-card">
+          <div class="trainer-photo" style="background:linear-gradient(135deg, var(--indigo), #3a3ccf);">DM</div>
+          <div class="trainer-body">
+            <h3>Diego Morales</h3>
+            <p class="trainer-role">BACKEND & DEPLOYMENT</p>
+            <p>Ships APIs by day, demystifies servers and deployment pipelines by night.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="trainer-card">
+          <div class="trainer-photo" style="background:linear-gradient(135deg, var(--amber), #c98a06);">SO</div>
+          <div class="trainer-body">
+            <h3>Sofia Oduya</h3>
+            <p class="trainer-role">UX & PRODUCT DESIGN</p>
+            <p>Believes the best interfaces disappear. Teaches design thinking, not just visuals.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="trainer-card">
+          <div class="trainer-photo" style="background:linear-gradient(135deg, #ec4899, #a3216b);">RT</div>
+          <div class="trainer-body">
+            <h3>Ravi Thakur</h3>
+            <p class="trainer-role">CAREER COACH</p>
+            <p>Former tech recruiter, now helps grads land their first role with confidence.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-soft" id="contact">
+  <div class="container">
+    <div class="section-head mb-5 mx-auto text-center">
+      <p class="eyebrow">Get in touch</p>
+      <h2>Have a question before you enroll?</h2>
+      <p class="mx-auto">Send us a note — a trainer or advisor will reply within one business day.</p>
+    </div>
+    <div class="contact-panel">
+      <div class="row g-5">
+        <div class="col-lg-5">
+          <div class="contact-info-row">
+            <i class="bi bi-envelope"></i>
+            <div>
+              <h4>Email</h4>
+              <p>hello@codeforge-academy.example</p>
+            </div>
+          </div>
+          <div class="contact-info-row">
+            <i class="bi bi-telephone"></i>
+            <div>
+              <h4>Phone</h4>
+              <p>+1 (555) 012-4488</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-7">
+          <form id="contactForm">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <input type="text" class="form-control" placeholder="Your name" required>
+              </div>
+              <div class="col-sm-6">
+                <input type="email" class="form-control" placeholder="Your email" required>
+              </div>
+              <div class="col-12">
