@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Filter Search</title>
+    <!-- Google Fonts for better styling -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+   
+</head>
+<body>
+
+    <h1>Student Information </h1>
+
+    
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search student by name, roll no, or course...">
+    </div>
+
+  
+    <div class="card-container" id="student-container">
+        
+        
+        <div class="student-card">
+           
+           <h3> <div class="student-name">Rohan</div></h3>
+            <div class="student-info"><strong>Roll No:</strong> 01</div>
+            <div class="student-info"><strong>Course:</strong> B.Tech CSE</div>
+            <div class="student-info"><strong>Marks:</strong>90%</div>
+            <span class="student-role">Student</span>
+        </div>
+        <br>
+       
+        <div class="student-card">
+         
+            <h3><div class="student-name">Anjali</div></h3>
+            <div class="student-info"><strong>Roll No:</strong> 02</div>
+            <div class="student-info"><strong>Course:</strong> B.Tech CSE </div>
+            <div class="student-info"><strong>Marks:</strong>87%</div>
+            <span class="student-role">Student</span>
+        </div>
+        <br>
+        
+        <div class="student-card">
+           
+           <h3><div class="student-name">Amit</div></h3>
+            <div class="student-info"><strong>Roll No:</strong> 03</div>
+            <div class="student-info"><strong>Course:</strong> B.Tech CSE</div>
+            <div class="student-info"><strong>Marks:</strong>54%</div>
+            <span class="student-role">Student</span>
+        </div>
+        <br>
+        
+        <div class="student-card">
+            
+            <h3><div class="student-name">Pooja</div></h3>
+            <div class="student-info"><strong>Roll No:</strong> 04</div>
+            <div class="student-info"><strong>Course:</strong> B.Tech CSE</div>
+            <div class="student-info"><strong>Marks:</strong>60%</div>
+            <span class="student-role">Student</span>
+        </div>
+        <br>
+
+        <div class="student-card">
+          
+            <h3><div class="student-name">Preeti</div></h3>
+            <div class="student-info"><strong>Roll No:</strong> 05</div>
+            <div class="student-info"><strong>Course:</strong> B.Tech CSE</div>
+            <div class="student-info"><strong>Marks:</strong>94%</div>
+            <span class="student-role">Student</span>
+        </div>
+        <br>
+
+        <div class="student-card">
+            
+            <h3><div class="student-name">Ram</div></h3>
+            <div class="student-info"><strong>Roll No:</strong> 06</div>
+            <div class="student-info"><strong>Course:</strong> B.Tech CSE</div>
+            <div class="student-info"><strong>Marks:</strong>82%</div>
+            <span class="student-role">Student</span>
+        </div>
+
+    </div>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <!-- jQuery Search Logic -->
+    <script>
+        $(document).ready(function(){
+            // Jab user search input me kuch type karega
+            $("#search-input").on("keyup", function() {
+                // Jo type kiya hai use lowercase (choti abcd) me convert karein taaki case-sensitive ka chakkar na rahe
+                var value = $(this).val().toLowerCase();
+                
+                // Saare student cards ko filter karein
+                $("#student-container .student-card").filter(function() {
+                    // Agar card ke andar ka text search value se match hota hai toh dikhao, nahi toh hide karo
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
